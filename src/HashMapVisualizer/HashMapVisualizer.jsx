@@ -323,7 +323,7 @@ export default class HashMapVisualizer extends Component {
         <div  className="switch_box_panel">
           <p>Change Panel Contents</p>
           <Switch theme="default"
-            className="d-flex"
+            className="button_switch_pos"
             enabled={wantIndexPanel}
             onStateChanged={this.toggleNotifications}
           />

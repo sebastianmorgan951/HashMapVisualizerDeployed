@@ -2,10 +2,10 @@
   background-color: #B4D890;
   color: black;
   width:25vw;
-  outline: 0.25vw solid rgb(59, 130, 187);
   position: absolute;
+  border-radius: 0.5vw;
   top: 1.5vw;
-  left: 1.5vw;
+  right: 1.5vw;
   text-align: left;
   padding: 0.8vw;
   font-size: 1vw;

@@ -1,0 +1,14 @@
+.entry {
+  width:4.5vw;
+  height: 4vw;
+  padding: 0.6vw;
+  margin: 0.05vw;
+  line-height: 0;
+  outline: 0.18vw solid rgb(59, 130, 187);
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  text-align: left;
+  font-size: 0.9vw;
+}

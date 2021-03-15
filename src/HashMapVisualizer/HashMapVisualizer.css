@@ -1,0 +1,113 @@
+.grid {
+  margin: 1vw 0 0;
+}
+
+.op_grid_top {
+  margin: 0vw 0 0;
+  margin-right: 8vw;
+  padding: 0vw;
+}
+
+.op_grid_bot {
+  margin: 0.5vw 0 0;
+  margin-left: 1.4vw;
+  padding: 0vw;
+}
+
+.button_panel {
+  margin-top: 3vw;
+  padding: 0vw;
+}
+
+.button {
+  background-color: rgb(59, 130, 187);
+  border-radius: 0.5vw;
+  border: 0.25vw double #99CC66;
+  color: #eeeeee;
+  text-align: center;
+  font-size: 1.15vw;
+  padding: 0.8vw;
+  width: 7.2vw;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0.81vw;
+  display: inline-block;
+}
+
+.button::before {
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  -webkit-transform: scaleY(.1);
+  transform: scaleY(.1);
+  transition: all .4s
+}
+.button:hover {
+  color: #99CC66;
+  background-color: #4898D5;
+}
+.button:hover::before {
+  opacity: 1;
+  background-color: #f7c2f9;
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+  transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}
+
+.box_description {
+  font-size: 1.3vw;
+  display: inline-block;
+}
+
+.text_box {
+  font-size: 1.1vw;
+  margin: 1.2vw;
+  display: inline-block;
+  position: relative;
+  top: 0vw;
+  padding: 0.2vw;
+  background-color: rgb(230,230,230);
+  border-radius: 0.15vw;
+  width: 8.1vw;
+}
+
+.input_fields {
+  position: relative;
+  background-color: rgb(220, 220, 220);
+  border-radius: 0.5vw;
+  color: black;
+  text-align: center;
+  font-size: 1.1vw;
+  padding-left: 1.7vw;
+  padding-right: 0.85vw;
+  padding-top: 0.2vw;
+  padding-bottom: 0.2vw;
+  width: 34vw;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  margin: 1vw;
+  margin-bottom: 3vw;
+  display: inline-block;
+}
+
+.switch_box_panel {
+  border-radius: 0.5vw;
+  border: 0.3vw double #dddddd;
+  padding: 0.81vw;
+  position: absolute;
+  text-align: center;
+  line-height: 0;
+  right: 1vw;
+  top: 1vw;
+}

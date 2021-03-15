@@ -1,0 +1,58 @@
+.op_single_container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0vw;
+  width: 6vw;
+  height: 9vw;
+  padding: 0px;
+  margin-left: 3.35vw;
+}
+
+.centered { /* For margin, think about how the text is always "under" the image */
+  font-size: 0.7vw;
+  position: absolute;
+  top: 1.6vw;
+  margin: 0em;
+  text-align: center;
+  padding-left: 0.6vw;
+  padding-right: 0vw;
+  line-height: 0.1;
+}
+
+/*
+.centered {
+  padding: 0px;
+  position: absolute;
+  text-align: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  margin: 0px;
+}*/
+
+.op_tracer_bot {
+  width: 6vw;
+  height: 9vw;
+  display: inline-block;
+}
+
+.op_tracer_top {
+  width: 6vw;
+  height: 9vw;
+  display: inline-block;
+}
+/*
+.op_tracer:hover {
+  color: #99CC66;
+  background-color: #4898D5;
+}
+.op_tracer:hover::before {
+  opacity: 1;
+  background-color: #f7c2f9;
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  transition: -webkit-transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity .4s;
+  transition: transform .6s cubic-bezier(.08, .35, .13, 1.02), opacity
+}*/

@@ -14,7 +14,11 @@ export function put(grid, key, value, size) { // return map and actions taken
   }
   let tombInd = -1;
   let index = hashed;
+  let noInfiniteLoop = 0;
   while(!(grid[index].state.isEmpty)){
+    if(noInfiniteLoop >= grid.length){
+      break;
+    }
     if(grid[index].state.isTombstone && (tombInd == -1)){
       tombInd = index;
       actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>Replace tomb</p></p>);
@@ -35,6 +39,7 @@ export function put(grid, key, value, size) { // return map and actions taken
     }
     actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Not tombstone</p><p>Keep Searching</p></p>);
     index = (index + 1)%grid.length;
+    noInfiniteLoop = noInfiniteLoop + 1;
   }
   if(tombInd != -1){
     let diff = tombInd - hashed + 1;
@@ -58,7 +63,11 @@ export function replace(grid, key, value) { // return map and actions taken
   }   //Returns grid, steps of actions, hashed value of key, error msg, if success`
   let errormsg="1";
   let index = hashed;
+  let noInfiniteLoop = 0;
   while(!(grid[index].state.isEmpty)){
+    if(noInfiniteLoop >= grid.length){
+      break;
+    }
     if(grid[index].state.isTombstone){
       if(grid[index].state.key==key){
         actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>Matches key</p><p>Exit, failure</p></p>);
@@ -74,6 +83,7 @@ export function replace(grid, key, value) { // return map and actions taken
     }
     actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Not tombstone</p><p>Keep Searching</p></p>);
     index = (index + 1)%grid.length;
+    noInfiniteLoop = noInfiniteLoop + 1;
   }
   actions.push(<p><p>Check index {index}</p><p>Is empty</p><p>Probing Failed</p><p>Exit</p></p>);
   return [grid, actions, hashed, errormsg, false];
@@ -142,7 +152,11 @@ export function remove(grid, key, size) { // return map and actions taken
   }   //Returns grid, steps of actions, hashed value of key, error msg, new size of map, is successful
   let errormsg="1";
   let index = hashed;
+  let noInfiniteLoop = 0;
   while(!(grid[index].state.isEmpty)){
+    if(noInfiniteLoop >= grid.length){
+      break;
+    }
     if(grid[index].state.key==key){
       if(grid[index].state.isTombstone){
         actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Matching key</p><p>Is tombstone</p><p>Failed, exit</p></p>);
@@ -154,6 +168,7 @@ export function remove(grid, key, size) { // return map and actions taken
     }
     actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Keep Searching</p></p>);
     index = (index + 1)%grid.length;
+    noInfiniteLoop = noInfiniteLoop + 1;
   }
   actions.push(<p><p>Check index {index}</p><p>Is empty</p><p>Failed, exit</p></p>);
   return [grid, actions, hashed, errormsg, size, false];

@@ -39,9 +39,9 @@ export default class Entry extends Component {
     else{
       return (
         <div>
-          <p>K: {this.state.key}</p>
-          <p>V: {this.state.value}</p>
-          <p>T: {this.state.isTombstone.toString()}</p>
+          <p className="entryText">K: {this.state.key}</p>
+          <p className="entryText">V: {this.state.value}</p>
+          <p className="entryText">T: {this.state.isTombstone.toString()}</p>
         </div>
       );
     }

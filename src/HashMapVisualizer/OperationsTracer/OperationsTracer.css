@@ -43,6 +43,10 @@
   height: 9vw;
   display: inline-block;
 }
+
+.tracer_text {
+  margin-bottom: 1.26vw;
+}
 /*
 .op_tracer:hover {
   color: #99CC66;

@@ -1,6 +1,7 @@
 /* When checking outputs in HashMapVisualizer.jsx, we can first check for an error message, then continue on
  */
 import Entry from '../HashMapVisualizer/Entry/Entry';
+import '../HashMapVisualizer/InfoPanel/InfoPanel.css';
 
 export function put(grid, key, value, size) { // return map and actions taken
   let actions = [];
@@ -21,23 +22,26 @@ export function put(grid, key, value, size) { // return map and actions taken
     }
     if(grid[index].state.isTombstone && (tombInd == -1)){
       tombInd = index;
-      actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>Replace tomb</p></p>);
+      actions.push(<div><p className="tracer_text">Check index {index}</p>
+                  <p className="tracer_text">Has entry</p><p className="tracer_text">Is tombstone</p>
+                  <p className="tracer_text">Replace tomb</p></div>);
       index = (index + 1)%grid.length;
       continue;
     }
     if(grid[index].state.key==key){
       if(tombInd != -1){
         if(hashed <= tombInd){
-          actions[tombInd - hashed] = <p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>Continue</p></p>;
+          actions[tombInd - hashed] = <div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Is tombstone</p><p className="tracer_text">Continue</p></div>;
         }
         else{
-          actions[grid.length - hashed + tombInd] = <p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>Continue</p></p>;
+          actions[grid.length - hashed + tombInd] = <div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Is tombstone</p><p className="tracer_text">Continue</p></div>;
         }
       }
-      actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Matches key</p><p>Exit, failure</p></p>);
+      actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p>
+                        <p className="tracer_text">Matches key</p><p className="tracer_text">Exit, failure</p></div>);
       return [grid, actions, hashed, errormsg, false, size, false];
     }
-    actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Not tombstone</p><p>Keep Searching</p></p>);
+    actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">No key match</p><p className="tracer_text">Not tombstone</p><p className="tracer_text">Keep Searching</p></div>);
     index = (index + 1)%grid.length;
     noInfiniteLoop = noInfiniteLoop + 1;
   }
@@ -50,7 +54,7 @@ export function put(grid, key, value, size) { // return map and actions taken
     grid[tombInd] = new Entry(/*Key*/key, /*Key*/value, /*hashValue*/hashed, /*isTomb*/false, /*isEmpty*/false, /*whereItEndsUp*/tombInd);
     return [grid, actions, hashed, errormsg, true, size + 1, false];
   }
-  actions.push(<p><p>Check index {index}</p><p>Is empty</p><p>Can put</p></p>);
+  actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Is empty</p><p className="tracer_text">Can put</p></div>);
   grid[index] = new Entry(/*Key*/key, /*Key*/value, /*hashValue*/hashed, /*isTomb*/false, /*isEmpty*/false, /*whereItEndsUp*/index);
   return [grid, actions, hashed, errormsg, true, size + 1, false];
 }
@@ -70,22 +74,22 @@ export function replace(grid, key, value) { // return map and actions taken
     }
     if(grid[index].state.isTombstone){
       if(grid[index].state.key==key){
-        actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>Matches key</p><p>Exit, failure</p></p>);
+        actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Is tombstone</p><p className="tracer_text">Matches key</p><p className="tracer_text">Exit, failure</p></div>);
         return [grid, actions, hashed, errormsg, false];
       }
-      actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Is tombstone</p><p>No key match</p><p>Keep Searching</p></p>);
+      actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Is tombstone</p><p className="tracer_text">No key match</p><p className="tracer_text">Keep Searching</p></div>);
       continue;
     }
     if(grid[index].state.key===key){
       grid[index] = new Entry(/*Key*/key, /*Key*/value, /*hashValue*/hashed, /*isTomb*/false, /*isEmpty*/false, /*whereItEndsUp*/index);
-      actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Matches key</p><p>Replace</p></p>);
+      actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Matches key</p><p className="tracer_text">Replace</p></div>);
       return [grid, actions, hashed, errormsg, true];
     }
-    actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Not tombstone</p><p>Keep Searching</p></p>);
+    actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">No key match</p><p className="tracer_text">Not tombstone</p><p className="tracer_text">Keep Searching</p></div>);
     index = (index + 1)%grid.length;
     noInfiniteLoop = noInfiniteLoop + 1;
   }
-  actions.push(<p><p>Check index {index}</p><p>Is empty</p><p>Probing Failed</p><p>Exit</p></p>);
+  actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Is empty</p><p className="tracer_text">Probing Failed</p><p className="tracer_text">Exit</p></div>);
   return [grid, actions, hashed, errormsg, false];
 }
 
@@ -120,10 +124,10 @@ export function set(grid, key, value, size) { // return map and actions taken
     //replace a tombstone before we reach an existing element with replacement
     if(grid[index].state.key==key){
       grid[index] = new Entry(key, value, hashed, false, false, index);
-      actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Matches key</p><p>Replace value</p></p>);
+      actions.push(<p className="tracer_text"><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Matches key</p><p className="tracer_text">Replace value</p></p>);
       return [grid, actions, hashed, errormsg, size, false];
     }
-    actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Keep Searching</p></p>);
+    actions.push(<p className="tracer_text"><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">No key match</p><p className="tracer_text">Keep Searching</p></p>);
     index = (index + 1)%grid.length;
     if(index === hashed){
       break;
@@ -133,13 +137,13 @@ export function set(grid, key, value, size) { // return map and actions taken
   while(!(grid[replaceIndex].state.isEmpty)){
     if(grid[replaceIndex].state.isTombstone){
       grid[replaceIndex] = new Entry(key, value, hashed, false, false, replaceIndex);
-      actions.push(<p><p>Check index {replaceIndex}</p><p>Has entry</p><p>Is tombstone</p><p>Replace</p></p>);
+      actions.push(<p className="tracer_text"><p className="tracer_text">Check index {replaceIndex}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Is tombstone</p><p className="tracer_text">Replace</p></p>);
       return [grid, actions, hashed, errormsg, size + 1, false];
     }
-    actions.push(<p><p>Check index {replaceIndex}</p><p>Has entry</p><p>No key match</p><p>Not tombstone</p><p>Keep Searching</p></p>);
+    actions.push(<p className="tracer_text"><p className="tracer_text">Check index {replaceIndex}</p><p className="tracer_text">Has entry</p><p className="tracer_text">No key match</p><p className="tracer_text">Not tombstone</p><p className="tracer_text">Keep Searching</p></p>);
     replaceIndex = (replaceIndex + 1)%grid.length;
   }
-  actions.push(<p><p>Check index {replaceIndex}</p><p>Is empty</p><p>Can set</p></p>);
+  actions.push(<p className="tracer_text"><p className="tracer_text">Check index {replaceIndex}</p><p className="tracer_text">Is empty</p><p className="tracer_text">Can set</p></p>);
   grid[replaceIndex] = new Entry(key, value, hashed, false, false, replaceIndex);
   return [grid, actions, hashed, errormsg, size + 1, false];
 }
@@ -159,18 +163,18 @@ export function remove(grid, key, size) { // return map and actions taken
     }
     if(grid[index].state.key==key){
       if(grid[index].state.isTombstone){
-        actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Matching key</p><p>Is tombstone</p><p>Failed, exit</p></p>);
+        actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Matching key</p><p className="tracer_text">Is tombstone</p><p className="tracer_text">Failed, exit</p></div>);
         return [grid, actions, hashed, errormsg, size, false];
       }
       grid[index] = new Entry(/*Key*/key, /*Val*/grid[index].state.value, /*hashValue*/hashed, /*isTomb*/true, /*isEmpty*/false, /*whereItEndsUp*/index);;
-      actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>Matching key</p><p>Remove key</p></p>);
+      actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">Matching key</p><p className="tracer_text">Remove key</p></div>);
       return [grid, actions, hashed, errormsg, size - 1, true];
     }
-    actions.push(<p><p>Check index {index}</p><p>Has entry</p><p>No key match</p><p>Keep Searching</p></p>);
+    actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Has entry</p><p className="tracer_text">No key match</p><p className="tracer_text">Keep Searching</p></div>);
     index = (index + 1)%grid.length;
     noInfiniteLoop = noInfiniteLoop + 1;
   }
-  actions.push(<p><p>Check index {index}</p><p>Is empty</p><p>Failed, exit</p></p>);
+  actions.push(<div><p className="tracer_text">Check index {index}</p><p className="tracer_text">Is empty</p><p className="tracer_text">Failed, exit</p></div>);
   return [grid, actions, hashed, errormsg, size, false];
 }
 

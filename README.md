@@ -43,7 +43,7 @@ Now, you can make changes to any files and see the effects by running:
 I very quickly learned that the way these values were asynchronously updated made it difficult to be sure that
   my hashmap algorithm would work well when many changes were made before React decided to update my `setState({})` calls.
   Because of this and the fact that the project was small enough for me to understand the project, I felt more comfortable
-  simply directly changing the fields of objects, which is not a great practice in general.
+  simply directly changing the fields of objects, which is not a great practice in general, but something I will continue to work on and learn.
 
 - The interface is *ugly*. This is true, I had a lot more fun implementing the algorithm and making sure each element of
 the page updated and re-rendered at the right time. I may come back and make things look better, but this isn't too much of

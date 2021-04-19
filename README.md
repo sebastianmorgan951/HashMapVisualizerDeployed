@@ -1,3 +1,5 @@
+Check out the current version at https://sebastianmorgan951.github.io/HashMapVisualizerDeployed/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
